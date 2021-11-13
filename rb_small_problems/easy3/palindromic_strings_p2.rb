@@ -4,6 +4,9 @@ and it only counts alphanumeric characters
 1. change string so that it is all downcase
 2. change string so that it only has
 =end
+
+# method without the String#delete method: 
+
 LETTERS = ('a'..'z').to_a
 NUMBERS = ('0'..'9').to_a
 ALPHANUMERICS = LETTERS + NUMBERS
@@ -16,6 +19,15 @@ def real_palindrome?(input)
   input = downcase_alphanumerics(input)
   palindrome?(input)
 end
+
+# using the String#delete method:
+
+def real_palindrome?(string)
+  string = string.downcase.delete('^a-z0-9')
+  palindrome?(string)
+end
+
+# brute force method from pt1:
 
 def palindrome?(input)
   forward_counter = 0
