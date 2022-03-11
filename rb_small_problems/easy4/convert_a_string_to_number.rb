@@ -16,11 +16,25 @@ output: the integer equivalent
   - '4' -> 4, add 3 zeros -> 4000 (x 1000) [0] (length - 4)
 as the index subtractor counter goes up by +1
        multiplier counter up by x10
+
+Further Exploration:
+input: hex string
+output: integer value
+
+question: 
+- how to change from hex to integer?
+
+- split string into individual characters
+- if a number, run through string to integer
+- or add the hex numbes 
   
 =end
 
 DIGITS = {"0" => 0, "1" => 1, "2" => 2, "3" => 3, "4" => 4, 
           "5" => 5, "6" => 6, "7" => 7, "8" => 8, "9" => 9 }
+
+HEX_DIGITS = DIGITS.merge({"A" => 10, "B" => 11, "C" => 12, "D" => 13, "E" => 14,
+                       "F" => 15 })
 
 def string_to_integer(str_number)
   digits = str_number.chars.map { |char| DIGITS[char]}
@@ -43,6 +57,14 @@ end
 #   multiplied
 # end
 
+def hexadecimal_to_integer(string)
+  digits = string.upcase.chars.map { |char| HEX_DIGITS[char]}
+  value = 0
+  digits.each{|number| value = 16 * value + number}
+  value
+end
 
 p string_to_integer('4321') == 4321
 p string_to_integer('570') == 570
+
+p hexadecimal_to_integer('4D9f') == 19871
